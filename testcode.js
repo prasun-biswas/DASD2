@@ -69,21 +69,4 @@ Person.prototype.getName=function(){
 }
 var p1=new Person('prasun');
 p1.getName();
-//var p1=new Person('biswas');
-// console.log(p1.getName());
-// app.post('/notifs', function(req, res){
-//     //console.log(req.body.payload);
-//     console.log(req.body.payload.PalletID);
-//     if(req.body.id == "Z1_Changed")
-//     {
-//         //cleint 1
-//         request.post('http://localhost:4445',{form:{event:req.body}},
-//             function(err,httpResponse,body){});
-//
-//         request.post('	http://localhost:3000/RTU/SimCNV8/services/TransZone12',{form:{event:req.body}},
-//             function(err,httpResponse,body){});
-//
-//     }
-//     res.end();
-// });
 
