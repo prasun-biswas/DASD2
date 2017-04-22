@@ -23,6 +23,16 @@ this.operateServer(this.portID,this.stationID)
 }
 
 Workstation.prototype.operateServer=function(port,station){
+    var express=require('express');
+    var app=express();
+    var bodyParser = require('body-parser');
+    var http = require('http').Server(app);
+    var logger = require('morgan');
+    var request = require('request');
+
+    app.use(logger('dev'));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: false }));
 
     request.post('http://localhost:3000/RTU/SimCNV'+station+'/events/Z1_Changed/notifs',{form:{destUrl:"http://localhost:"+port+"/"+station+"notifs"}}, function(err,httpResponse,body){console.log(port+' hi '+station);});
 
