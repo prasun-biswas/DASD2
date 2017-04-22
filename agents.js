@@ -27,21 +27,19 @@ Workstation.prototype.operateServer=function(port,station){
     request.post('http://localhost:3000/RTU/SimCNV'+station+'/events/Z1_Changed/notifs',{form:{destUrl:"http://localhost:"+port+"/"+station+"notifs"}}, function(err,httpResponse,body){console.log(port+' hi '+station);});
 
 
-//
+    app.post('/'+station+'notifs', function (req, res) {
+        console.log(req.body);
+        console.log("stat inside app.post is"+station+ " and "+port);
+        var post_url='http://localhost:3000/RTU/SimCNV'+station+'/services/TransZone12';
+        console.log(post_url);
+        request.post(post_url,{form:{event:req.body}},
+            function(err,httpResponse,body){});
+
+        res.end();
+    })
     app.listen(port,function () {
         //var ref=this;
         console.log("stat inside app.listen is "+station);
-        app.post('/'+station+'notifs', function (req, res) {
-            console.log(req.body);
-            console.log("stat inside app.post is"+station+ " and "+port);
-            var post_url='http://localhost:3000/RTU/SimCNV'+station+'/services/TransZone12';
-            console.log(post_url);
-            request.post(post_url,{form:{event:req.body}},
-                function(err,httpResponse,body){});
-
-            res.end();
-        })
-
     });
 
 }
